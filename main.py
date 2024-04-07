@@ -66,6 +66,23 @@ class Staff:
     def __init__(self, name, position):
         self.name = name
         self.position = position
+
+class ZooKeeper(Staff):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def feed_animal(self, animal):
+        print(f"{self.name} сторож охраняет {animal.name}.")
+
+
+class Veterinarian(Staff):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def heal_animal(self, animal):
+        print(f"{self.name} ветеринар лечит {animal.name}.")
+
+#----------------------------------------------------------------------------------
 def animal_sound(animals):
     for animal in animals:
         animal.make_sound()
@@ -82,10 +99,14 @@ zoo.add_animal(Mammal("Лев", 4, "золотой"))
 zoo.add_animal(Reptile("Змея", 1, "склизкая"))
 
 zoo.add_staff(Staff("Вася Пупкин", "сторож"))
-zoo.add_staff(Staff("Света Пуговкина", "Директор"))
+zoo.add_staff(Staff("Света Пуговкина", "Ветеринар"))
+
 
 animals = [bird, mammal, reptile]
 
 zoo.list_animals()
 animal_sound(animals)
 zoo.list_staff()
+
+zoo.staff[0].feed_animal(mammal)
+zoo.staff[1].heal_animal(reptile)
