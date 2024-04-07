@@ -37,15 +37,55 @@ class Reptile(Animal):
         print(f"{self.name} шипит!")
 
 
+class Zoo:
+    def __init__(self):
+        self.animals = []
+        self.staff = []
+
+    def add_animal(self, animal):
+        self.animals.append(animal)
+        print(f"{animal.name} был добавлен в зоопарк.")
+
+    def add_staff(self, staff_member):
+        self.staff.append(staff_member)
+        print(f"{staff_member.name} был добавлен в персонал.")
+
+    def list_animals(self):
+        print("Животные зоопарка:")
+        for animal in self.animals:
+            print(f"- {animal.name}, Возраст: {animal.age}")
+
+    def list_staff(self):
+        print("Персонал зоопарка:")
+        for staff in self.staff:
+            print(f"- {staff.name}, должность: {staff.position}")
+
+
+# Создание класса для Сотрудников для использования в композиции
+class Staff:
+    def __init__(self, name, position):
+        self.name = name
+        self.position = position
 def animal_sound(animals):
     for animal in animals:
         animal.make_sound()
 
+zoo = Zoo()
 
 # Пример использования
 bird = Bird("Соловей", 2, 5)
-mammal = Mammal("Лев", 4, "golden")
-reptile = Reptile("Змея", 1, "diamonds")
+mammal = Mammal("Лев", 4, "золотой")
+reptile = Reptile("Змея", 1, "склизкая")
+
+zoo.add_animal(Bird("Соловей", 2, 5))
+zoo.add_animal(Mammal("Лев", 4, "золотой"))
+zoo.add_animal(Reptile("Змея", 1, "склизкая"))
+
+zoo.add_staff(Staff("Вася Пупкин", "сторож"))
+zoo.add_staff(Staff("Света Пуговкина", "Директор"))
 
 animals = [bird, mammal, reptile]
+
+zoo.list_animals()
 animal_sound(animals)
+zoo.list_staff()
